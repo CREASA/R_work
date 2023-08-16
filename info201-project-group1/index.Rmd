@@ -1,0 +1,194 @@
+---
+title: "Analysis for NBA Players"
+author: "Hongliang Gao, Xucheng Zhang, Michelle Guan, Qitong Liang, Xinyu Chang"
+date: "2/22/2021"
+output: html_document
+---
+### Info 201 Group Project - Group H1
+```{r setup, include=FALSE}
+library(knitr)
+source("analysis.R")
+```
+## Section 1 Problem Domain Description
+### Problem Domain
+The problem domain that our group wants to focus on is the NBA. NBA, The National Basketball Association is a professional basketball league in North America. Apparently basketball is one of the hottest sports in the world nowadays, which attracts Young middle aged old. Some may consider winning a basketball game only depends on the physical performance of players on the floor; however, data hidden under the floor is another essential key for the team to win not only a single game but the champion in the season. Based on data analysis, teams are likely to find the most powerful players on every different zone on the court inside the gym and the most suitable player for the team to assign contracts during free market outside the gym. This is the beauty of basketball combined with data analysis! Referring to the reason why our group project targets on such a domain, since most of the members in the groups are big fans of NBA games with different host teams and favorite players, we are looking forward to finding out the most dominant players in different areas and the most possible team for winning the championship in this season with the aid of data analysis in R studio. We are going to collect the data of players and matches, then we are able to rate on the performance of the players or the teams by analysing the data. Moreover, comparing the match data between two teams can help us to find out what the most important factors are to win a game. 
+
+More Information about NBA: The league is composed of 30 teams, including 29 domestic teams in the United States and 1 team in Canada. The league was founded in New York City on June 6th, 1946, with the original name of BAA(Basketball Association of America). On August 3rd, 1949, BAA changed its name to NBA after merging with the competing National Basketball League (NBL). Nowadays, the NBA has become the most popular sports league in the United States, sharing the equal popularity with the NFL and the MLB. The NBA's regular season runs from October to April, with each team playing 82 games and the top 8 teams of northern and western parts will enroll in a playoff tournament to compete for the final championship. The playoff tournament extends into June. However, the 2019–20 NBA season was the special case. It began on October 22, 2019, and originally was supposed to end on April 15th, 2020. Due to the COVOID-19 pandemic, the season had to be  suspended on March 11th.
+
+### Cited from:
+- [NBA History](https://nbahoopsonline.com/History/#:~:text=The%20NBA%20began%20life%20as,start%20of%20the%20next%20season)
+
+- [National Basketball Association](https://en.wikipedia.org/wiki/National_Basketball_Association)
+### Domain Knowledge
+- OT : Overtime		
+- H_A: Home team or away team	(team or opponent)		
+- Pace: Pace Factor, the number of possessions a team uses per game
+- Efg_pct: Effective Field Goal Percentage		
+- Tov_pct: Turnover Percentage 		
+- Pts: Points
+- Rebound: awarded to a player who retrieves the ball after a missed field goal or free throw. 	
+- Orb_pct: Offensive Rebounds percentage
+- Drb: Defensive Rebounds
+- Trb: Total Rebounds
+- Ast: Assists (A pass to a teammate who scores a basket immediately or after one dribble.)	Ft: Free Throws (An unopposed attempt to score a basket, worth one point, from the free-throw line. )		
+- Fta: Free Throw Attempts
+- Stl: Steals (To gain possession of the ball from the opposing team by intercepting a pass, knocking the ball off a dribble, or slapping it legally out of an opponent’s hands)		
+- Blk: blocks (To tip or deflect a shooter's shot, altering its flight so that the shot misses.)
+- Pf: Personal Fouls
+- Foul: A violation of the rules other than a floor violation, generally one which attempts to gain advantage by physical contact. Such violations are penalized by a change in possession or the awarding of free-throw opportunities.			
+- Ft_rate: Free throw percentage			
+- Def_Rtg: Defensive Rating, for players and teams it is points allowed per 100 possessions.
+- Off_Rtg: Offensive Rating, points scored per 100 possessions.			
+- inactives: inactive players. each team is required to carry 12 players on its active list and at least one player on its inactive list. 		
+- Fg: Field Goals(includes both 2-point field goals and 3-point field goals)				
+- Fg3: 3-point field goals			
+- Fga: Field Goal Attempts
+- Plus_Minus: the plus/minus statistic is a measure of the point differential when players are in and out of a game.
+- BPM : basketball box score-based metric, estimates a basketball player’s contribution to the team when that player is on the court.		
+- Tsp_pct: True shooting percentage,  is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws.					
+- Usg_pct: Usage Percentage, an estimate of the percentage of team plays used by a player while he was on the floor.
+Double_double: a single-game performance in which a player accumulates ten or more in two of the following five statistical categories: points, rebounds, assists, steals, and blocked shots.
+- Trible_double: a single-game performance by a player who accumulates a double-digit number total in three of five statistical categories
+- PG: point guard
+- SG: shooting guard
+- C: center
+- SF: Small forward.
+
+### Cited From:
+- [Basketball Reference](https://www.basketball-reference.com/about/glossary.html)
+- [Glossary of basketball terms](https://en.wikipedia.org/wiki/Glossary_of_basketball_terms)
+
+## Section 2 Data Descrpition
+### what is the data?
+There are total 4 data sets we will use,including:player,player data,ASA All NBA Raw Data,and Seasons_Stats.The player data set includes some demographic information of players--weight,height,the univerisity from which they graduated and birth date,place of birth.The player data set includes the the year they started playing, the year they retired,and the position they played.The data sets of ASA All NBA Raw Data and Seasons_Stats data introduce some of their competition information, including their free throw rate, game location, reserve roster, opponent teams and so on.
+
+### Data source
+
+### ASA All NBA Raw Data
+<br>This data set includes all the NBA games in Regular seasons and Playoff seasons: scores of each 2 teams, detailed data statistics of every player in the game. We download the data from the official NBA websites of Data Analysis, and the link is [NBA RAW DATA](https://www.advancedsportsanalytics.com/nba-raw-data). Data comes from the official staff of NBA union who records the data of every game and stores them into this data set, and the computer also makes the data more logical and reliable with specific analysis. Actually most of the questions we post are likely to be answered by this data set since it includes tons of valuable data for us to analyze.
+
+### NBA Players stats since 1950
+<br>The data-set contains aggregate individual statistics for 67 NBA seasons, from basic box-score attributes such as points, assists, rebounds etc., to more advanced money-ball like features such as Value Over Replacement. We downloaded from Kaggle, and the url is [NBA Players stats since 1950](https://www.kaggle.com/drgilermo/nba-players-stats?select=Players.csv). The blog contains three datasets, Players.csv, Seasons_Stats.csv and Player_data.csv. Each of them respectively contains the basic information of players(weight, height, birth date, college, etc), the game stats(position, minutes player, PER, etc) and aggregate data during their careers(year started and year ended).
+These datas are collected by Omri Goldstein, who is a Data Scientist at Walkme. He scraped the raw data from Basketball-reference and banded them together by himself.The data includes all of the basic information of players, including the physical data and their educational background, such as their graduated university. With these data, we are able to analysis tasks such as the relationships between players’ quality and their universities and relationships between players’ physical data and their scoring efficiency.
+
+### A sample of the data set
+```{r player table, echo= FALSE}
+knitr::kable(sample_game_pace,caption = "Sample Game Pace")
+knitr::kable(uw_graduate_NBA_player, caption = "UW Graduate NBA Players")
+```
+### Explain the columns
+  - Team_Abbrev:Team abbreviation
+  - Team_pace:round number
+  - Opponent_Abbrev:Opponent abbreviation
+  - Opponent_pace:round number
+  - position: C--Center
+              SG--Shooting Guard 
+              PG--Point Guard 
+              SF--small forward 
+              PF--Power forward
+
+
+### Subsection
+
+For the dataset "player_data.df", it includes names, length of career, positions, heights, and colleges of all players in NBA. Weights summary of the players' weights : min is `r player_summary[1]`, max is `r player_summary[6]`, median is `r player_summary[3]`, and mean is `r player_summary[4]`. Moreover, data of six players are missing. 
+
+There are two distinct outliers in this data set, which are weights of 114 and 360. However, appearances of these two observations are reasonable because Center player("c") is usually the highest and strongest player in a basketball team, and Guard player("G") is usually the shortest one and thinnest in a team. 
+
+##### This is a plot shows that distribution of weight for different position players.
+```{r data_description2, fig.width= 8, fig.height= 4.5, echo= FALSE}
+weight_position_plot
+```
+
+##### This is a plot shows that distribution of weight and height for players.
+```{r height and weight plot, echo= FALSE}
+height_weight_players_plot
+```
+
+
+For the dataset "all_NBA_raw_data_df", it includes all recorded matches with specific details(teams, players, scores, pace, etc).
+
+Summary of the match pace: min is `r Pace_summary[1]`, max is `r Pace_summary[6]`, median is `r Pace_summary[3]`, and mean is `r Pace_summary[4]`.
+
+Summary of the match score: min is `r Score_summary[1]`, max is `r Score_summary[6]`, median is  `r Score_summary[3]`, and mean is `r Score_summary[4]`. 
+
+There are no significant outliers in this sample. We can know from the plot that game pace is positively correlated with the game score, and it might be the reason why there are no distinct outliers. 
+
+##### This plot shows the relationship between game pace and game score. 
+
+```{r data_description3, fig.width= 8, fig.height= 4.5, echo= FALSE}
+score_pace_plot
+```
+
+## Section 3: Specific Question Analyses
+### Question 1: Which states play well in the NBA? (Which states have the highest number of NBA players?)
+
+```{r Question 1, fig.width= 8, fig.height= 4.5, echo= FALSE}
+players_states_plot
+```
+
+### Plot evaluation
+
+1. Our goal for this question is to find out state with the highest number of NBA players born, and we might be able to do further research by using this answer, for example, which state has the best basketball atmosphere.  
+
+2. First, I used the "plyaers_df" dataset and extracted the birth location(states). Then, I counted the number of NBA players born in each state and put it in the map(geom_polygon). 
+
+3. State with the highest number of NBA players born and the number: `r max_num_Players_states`.
+Top 5 states and the number of NBA players born: `r top_5_states`.
+States with the lowest number of NBA players born and the number: `r min_num_Players_state`.
+State with NA data recorded(missing data): `r NA_value_state`.
+The mean of the number of NBA players born in states is `r summary_players_states[4]`, and the median is `r summary_players_states[3]`. 
+
+4. From the analysis, we can see the mean and the median are much lower than the numbers of the top 5 states. We can assume that people who were born in these states would have a larger probability of becoming a NBA player. I consider that basketball might be more popular in these states, and there are more opportunities for children to improve their basketball skills by entering a good school with a great basketball team.
+
+
+
+### Question 2:Does a taller player perform better?
+```{r, echo=FALSE}
+question2plot
+```
+
+
+### Plot evaluation
+A common thinking towards basketball is that taller people tend to take more advantage on the court,
+so I used the scatterplot to investigate whether such relationship exists in NBA, and the it turns out that there is no direct relationships between these two factors. Even though there is a small peak when players' height is 210 cm on the trend line, there are still too much outliers exist. The reason for this is that full-court basketball is a team sport, and different players serve different positions and functions depending on their skills and physical quality, so being short does not mean that he cannot take advantage during the game. But this result might change if people are playing one-on-one. The variables I used for this problem is players' height and their EFG rate during the game. The EFG refers to effective field goal percentage, which evaluates the real field goal percentage of players during the game. I take it as the sample because the more a player scores, the more dominant he will be during the game. The sample games are from 2008 to 2018. In order to make the sample more fair, I set the age range from 20 yrs old to 30 yrs old, which is the golden period for a player.
+
+I first convert the height of players from "feet-inch" to centimeter to make the plot more straightforward. Then I filter the player who fit the condition. Next, I grab their EFG from another data frame, grouping them by name, taking the average from every game they attend. Finally, I make the scatterplot and add the trend line.
+
+
+### Question 3:Do people who have longer career experiences play better than people with less experience?
+```{r, echo=FALSE}
+Season_2017_yearRange_PER_plot
+Season_2017_yearRange_WS_plot
+```
+
+### Plot evaluation
+In order to clearify this question, longer career experience stands for longer year range in NBA Union and less experience stands for rookies who just enter the union for a shorter period. And the Win Share aka "WS" and Player Efficency rating aka "PER" are the standard to judge whetehr the particular player performed well on the court or not.
+
+In order to show more details, I specify the scale of players in the 2017-2018 season which eliminates conflicts bettween old time stats and modern stats related to basketball. First I filtered the data fram "player_data_df" with players entering the union before 2018 and mutate a new column named "year_range" into the data frame and specify palyers' stats in the 2017-2018 season. Based on the investigation, NBA players' average professional year range is 4.6 years and average age is 26 years old, which is the standard to distinguish experienced players and rookie players. Compare their WS and PER, find the mean of both the experienced and the rookie and finally draw the plot.
+
+Generally speaking, the experienced players perform better than players with less experience, but not a huge difference since both the mean of both WS and PER of the experienced are higher than the rookie. My answer to this question proves that talent is one of the most important factors for an outstanding player, but training and experience are worth the same. As a team pursueing championship, talent and experience both matter.
+
+### Question 4:Do centers have lower free throw percentages than power forwards?
+```{r Question 4, echo= FALSE}
+ft_pct_position_plot
+```
+
+### Plot evaluation
+The center is a position closest to the basket. Power forwards fight for rebounds in the game. Some people may consider that centers do not have good shooting skills. Our goal is going to figure it out by comparing the free throw percentages between the centers and the forwards. we will find and compare the free throw percentages for both center and forward players. This plot is designed to determine which position has the lower free throw rate in basketball.
+
+First, we select the players’ names, ft, and fta from all_NBA_raw_data_df for later use. Next, we replace all players at center and forward positions with power forwards in the player_data_df. Then, we select all the power forwards and center positions from player_data_df and extract the players' names. Finally, we left joined all_NBA_raw_data_df and player_data_df  by player's name so that their name, ft, fta, and position are on the same chart. After we finish data wrangling, we can generate a plot base on our data table.
+
+In this graph, centers are shown in green color, and power forwards are shown in orange color. Free throw percentage is determined by dividing the number of free throws by the number of free throw attempts. Therefore, free throws are on the Y-axis and free throw attempts are on the X-axis. As ft and fta increase, there are fewer centers (green points) than power forwards (orange points). By looking at the graph, we can conclude centers do have a lower free throw percentage than power forwards. In addition, there is one outlier in the graph, located at 26 ft and 27 fta. He is Anthony Davis, a power forward.
+
+### Question 5:Is there a correlation between the percentage of a player's 3-point field goals and free throw?
+```{r, echo=FALSE}
+scatterplot_ftfg3
+```
+
+
+### plot evaluation
+As a good shooter,the player is trying not to miss any shooting, but does it mean that the player can do well on both three-pointer and free throw?
+The percentage of a player's 3-point field goals in the data set is the fg3_pct which is equal to fg3/ fg3a,and the percentage of the free throw percentage of a player is the ft_pct which is equal to ft/fta.First,I "select" two coloums(the fg3_pct abd the ft_pct) from the dataset,the first step is a gooa way for us to observe the relationship between the percentage of a player's 3-point field goals and free throw directly.At that time,I noticed that there is no apparent relationship between the percentage of a player's 3-point field goals and free throw.Then,I decide to use plot to show the relationship.As is shown by the scatterplot, there is no obvious relationship between the percentage of a player's 3-point field goals and free throw.When the free throw rate is 0%, the 3-point field goals percentage have different values ranging from 0% to 1%.Also,when the free throw rate is 1%. the the 3-point field goals percentage also have different values.However, most of the data are concentrated in the interval where the free throw rate is greater than 0.5, which indicates that most players are proficient in free throw,but the percentage of their 3-point-field-goals is still between 0% and 1%.It shows that the strong ability of free throw does not mean that their percentage of 3-point field goals is strong. The reason for this phenomenon may be that each player has a different position in the team.For example, the player with a higher 3-point rate is often the SF(Small forward) position. The Small Forward is the most important scorer on the team. The basic requirement for a small forward is that they can get score from the position which is far away from the basket.But that doesn't mean their free shoot rate is high, because the percentage of free shoot is just a matter of individual performance.
+
+
+

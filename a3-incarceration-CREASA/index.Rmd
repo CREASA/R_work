@@ -1,0 +1,66 @@
+---
+title: "Incarceration Visualizations"
+author: "Creasa"
+date: "2/15/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+source("analysis.R")
+```
+
+## Data Description 
+
+The source of the data can be found through [Data Source](https://raw.githubusercontent.com/vera-institute/incarceration-trends/master/incarceration_trends.csv). From an initial inspection of the data, 
+
+- _The size of the data set is `r data_description$number_observation` number of observations._
+
+- _The range of years the data set covers is `r data_description$range_of_year`._
+
+- _The number of people in prison is `r data_description$total_number_of_people_in_prison_2018`,_
+
+- _and in jail is `r data_description$total_number_of_people_in_jail_2018`._
+
+- _The total number of people incarcerated in the most recent year of the data set is `r data_description$total_pop_2018`._
+
+The most recent year in the data is 2018 which is three years ago, thus the data may not be as relevant since the most recent presidential administration now is different from that in 2018, and policies may have changed. Specifically, on January 26, 2021, President Joe Biden signed a series of executive orders in the name of advancing racial equity. One of the most high-profile orders resurrected an Obama-era policy to phase out the Department of Justice’s contracts with privately managed prisons.Biden’s executive order impacts a segment of the current carceral state. 
+
+## Incarceration Trends Over Time 
+Here is a plot for Incarceration Over Time.
+
+```{r display time plot, echo=FALSE}
+incarceration_over_time_plot
+```
+
+Observing the trend in incarceration rates over time, I find that there is a sharp increase of incarcerated populations starting from 1983 and continued in 1990s.It is noticeable race categories with significantly higher incarceration are black and white,and the incarcerated populations of black and white are similar in 1980s, but the incarcerated population of black is higher than white in 1990s and early 2000, and the incarcerated population of white exceeded black until 2010.Plus,the incarcerated population of latinx comes the third highest.However, the incarcerated populations of native and appi are lowest (with native slightly exceed aapi since 2005).Obviously,there is a sharp drop for all races in 2017.
+
+## Highest Black Incarceration Rates
+Here is a bar chart for states with the Highest Black Incarceration Rates (top-10). 
+
+```{r display bar chart, echo=FALSE}
+top_10_black_incarceration_plot
+```
+
+Observing the chart, I notice the following about the state-level incarceration rates are similar across the state (especially the top-ten).Howeverm,all black rate significantly higher than the total rate in that state.The missing thing is that there is no proportion of black population in total population in each state.
+
+## Racial Incarceration Discrepancy Map 
+Here is a map for Racial Incarceration Discrepancy (Specifically, for the black population in Washington state in year 2016). 
+```{r display WA map,echo=FALSE}
+WA_map
+```
+
+Observing the map, I notice Adams is a county with significantly higher racial incarceration Discrepancy than the other counties. One potential reason could be the racial makeup of the county: 62.5% white, 0.6% black. Small absolute black population result in high black incarceration rate (with population being the denominator).
+
+## Your Own Visualization 
+```{r display gender plot,echo=FALSE}
+incarceration_gender_plot
+```
+
+### The questions my visualization attempt to answer?
+How does the female incarceration population changed over time?
+Are the incarceration trends over time different for Male and for Female?
+
+From my visualization, I notice a gradual increase in the female incarcerated population starting from 1983, becoming constant since 2005 but there is a decrease in 2017. Also, over the past 50 years, Male incarcerated population is significantly higher than female incarcerated population, with much sharper increase. Though more male are in prison than female, the rate of growth for female imprisonment has been twice as high as that of men since 1980. There are 1.2 million women under the supervision of the criminal justice system.That is the reason why I want to explore this visual layout,because I really care about the gender discrimination.The plot with colored lines show trends over time clearly, enabling us to compare and investigate the incarceration rate for female and male directly.

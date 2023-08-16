@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Project documentation</h1>
+
+<p>
+Created by: Hongliang Gao,  Xucheng Zhang,  Michelle Guan,  Qitong Liang,  Xinyu Chang
+</p>
+
+<h2><p><strong>What is the main problem?</strong></p></h2>
+
+
+<p>The problem domain that our group wants to focus on is the NBA. NBA, The National Basketball Association is a professional basketball league in North America. Apparently basketball is one of the hottest sports in the world nowadays, which attracts Young middle aged old. Some may consider winning a basketball game only depends on the physical performance of players on the floor; however, data hidden under the floor is another essential key for the team to win not only a single game but the champion in the season. Based on data analysis, teams are likely to find the most powerful players on every different zone on the court inside the gym and the most suitable player for the team to assign contracts during free market outside the gym. This is the beauty of basketball combined with data analysis! Referring to the reason why our group project targets on such a domain, since most of the members in the groups are big fans of NBA games with different host teams and favorite players, we are looking forward to finding out the most dominant players in different areas and the most possible team for winning the championship in this season with the aid of data analysis in R studio. We are going to collect the data of players and matches, then we are able to rate on the performance of the players or the teams by analysing the data. Moreover, comparing the match data between two teams can help us to find out what the most important factors are to win a game.
+
+More Information about NBA: The league is composed of 30 teams, including 29 domestic teams in the United States and 1 team in Canada. The league was founded in New York City on June 6th, 1946, with the original name of BAA(Basketball Association of America). On August 3rd, 1949, BAA changed its name to NBA after merging with the competing National Basketball League (NBL). Nowadays, the NBA has become the most popular sports league in the United States, sharing the equal popularity with the NFL and the MLB. The NBA regular season runs from October to April, with each team playing 82 games and the top 8 teams of northern and western parts will enroll in a playoff tournament to compete for the final championship. The playoff tournament extends into June. However, the 2019 to 2020 NBA season was the special case. It began on October 22, 2019, and originally was supposed to end on April 15th, 2020. Due to the COVOID-19 pandemic, the season had to be suspended on March 11th.
+</p>
+
+<h2><p><strong>Dataset</strong></p></h2>
+
+<p><em><strong>ASA All NBA Raw Data</strong></em></p>
+<p>This data set includes all the NBA games in Regular seasons and Playoff seasons: scores of each 2 teams, detailed data statistics of every player in the game. We download the data from the official NBA websites of Data Analysis, and the link is to <a href="https://www.advancedsportsanalytics.com/nba-raw-data">the NBA RAW DATA</a>. Data comes from the official staff of NBA union who records the data of every game and stores them into this data set, and the computer also makes the data more logical and reliable with specific analysis. Actually most of the questions we post are likely to be answered by this data set since it includes tons of valuable data for us to analyze.
+
+<p><em><strong>NBA Players stats since 1950</strong></em></p>
+<p>The data-set contains aggregate individual statistics for 67 NBA seasons, from basic box-score attributes such as points, assists, rebounds etc., to more advanced money-ball like features such as Value Over Replacement. We downloaded from Kaggle, and the url is <a href="https://www.kaggle.com/drgilermo/nba-players-stats?select=Players.csv"> NBA Players stats since 1950</a>. The data is collected by Omri Goldstein, who is a Data Scientist at Walkme. He scraped the raw data from Basketball-reference and banded them together by himself.The data includes all of the basic information of players, including the physical data and their educational background, such as their graduated university. With these data, we are able to analysis tasks such as the relationships between players quality and their universities and relationships between players physical data and their scoring efficiency.
+</p>
+
+<h2><p><strong>Report</strong></p></h2>
+<p>You can also find <a href="https://info201b-wi21.github.io/info201-project-group1/index.html"> the report</a>, which allow you to see more details about the data.
+</p>
+
+
+<h2><p><strong>The problems that we investigate</strong></p></h2>
+<p><strong><em> Which states play well in the NBA? (Which states have the highest number of NBA players?)</em></strong></p>
+
+<p>Our goal for this question is to find out state with the highest number of NBA players born,
+and we might be able to do further research by using this answer, for example, which state has the best basketball atmosphere.
+
+State with the highest number of NBA players born and the number: California 344.
+Top 10 states and the number of NBA players born for top 5: California,344; New york,290; Illinois,209; Pennsylvania,163; Ohio,137,
+Michigan, Texas, Geirgia, Louisiana, North Carolina.
+States with the lowest number of NBA players born and the number: Maine 1, New hampshire 1.
+State with NA data recorded(missing data): vermont. The mean of the number of NBA players born in states is 63.625, and the median is 44.5.
+
+From the analysis, we can see the mean and the median are much lower than the numbers of the top 5 states.
+We can assume that people who were born in these states would have a larger probability of becoming a NBA player.
+I consider that basketball might be more popular in these states, and there are more opportunities for children to improve their basketball
+skills by entering a good school with a great basketball team. WE can see the ranking below:
+
+Top States that produced most 5-star High school Basketball Talent: 1. California 2. Georgia 3. New York 4. Florida 5. Texas 8. Pennsylvania
+You can find the information<a href="https://bleacherreport.com/articles/2661912-ranking-the-states-that-produce-the-most-5-star-high-school-basketball-talent"> here.</a>
+The 10 States That Produce the Best College Basketball Talent: 1. Texas 2. California 4 . Illinois 6. Georgia 7. Florida  8. New York
+You can find the information<a href="https://bleacherreport.com/articles/1751325-the-10-states-that-produce-the-best-college-basketball-talent/"> here.</a>
+
+States that produced large numbers of NBA players also produced many great basketball players for high schools and colleges. Therefore,
+plenty of excellent basketball schools might be one of the reasons why these states are able to produce so many NBA players.
+
+</p>
+
+<p><strong><em>Does a taller player perform better?</em></strong></p>
+
+<p>A common thinking towards basketball is that taller people tend to take more advantage on the court,so I used the scatterplot to investigate whether such relationship exists in NBA, and the it turns out that there is no direct relationships between these two factors. Even though there is a small peak when players' height is 210 cm on the trend line, there are still too much outliers exist. The reason for this is that full-court basketball is a team sport, and different players serve different positions and functions depending on their skills and physical quality, so being short does not mean that he cannot take advantage during the game.But this result might change if people are playing one-on-one. The variables I used for this problem is players height, their EFG rate, and the WS rate during the game. The EFG refers to effective field goal percentage,which evaluates the real field goal percentage of players during the game. The WS refers to how much they contributed for winning the game.
+</p>
+
+
+
+<p><strong><em>Do people who have longer career experiences play better than people with less experience?</em></strong></p>
+
+<p>The opinion which experienced NBA players perform better on the floor than the rookies seems to convince most NBA fans since rookie players are likely to make more mistakes. Based on our investigate of comparing WS and PER value of rookie and experienced, the average WS and PER value of the experienced players are a little bit higher than the rookies but not with a huge gap, and some rookies have pretty high WS and PER. Based on that, the answer to such a question is experienced NBA players do perform better than the rookies, but talent matters as well.
+
+</p>
+
+
+<p><strong><em>Do centers have lower free throw percentages than power forwards?</em></strong></p>
+
+<p>In this graph, centers are shown in green color, and power forwards are shown in orange color. Free throw percentage is determined by dividing the number of free throws by the number of free-throw attempts. Therefore, free throws are on the Y-axis and free throw attempts are on the X-axis. The maximum free throw percentage in the Center position is 1, the minimum free throw percentage is 0, the medium is 0.75, and the mean is 0.6791036. In comparison, the maximum in power forward is 1, the medium is 0.75, the mean is 0.7146871, and the minimum is 0. According to statistics shown in the table, there are centers and forwards with a maximum free-throw percentage of 1, a minimum of 0, and a medium of 0.75. Therefore, peoples assumption in power forwards is always better than centers in free throw is not entirely true because there are exceptions. For some players, there may be confounding variables involved in the assumption, such as the players practice time, mood, or fatigue in the game. People should not just make conclusions for everyone just based on their position. Furthermore, we can conclude that most of the power forwards have a better free throw percentage than centers because the mean is higher, with a 0.7146871 compare to 0.6791036. A 0.0355835 of difference. As ft and fta increase, there are fewer centers (green points) than power forwards (orange points). By looking at the graph, it is hard to tell which position has a better free throw percentage, but we can see that as the x-axis and y-axis increase, more power forwards appear on the graph. We still have to use the data in the table to make the final conclusion that power forwards do have a higher free throw rate than centers. In addition, there is one outlier in the graph, located at 26 ft and 27 fta. He is Anthony Davis, a power forward.
+
+</p>
+
+
+ </body>
+</html>

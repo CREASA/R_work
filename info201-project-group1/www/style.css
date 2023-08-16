@@ -1,0 +1,21 @@
+h1{
+  font-family: 'Helvetica';
+  font-size: 40px;
+  color: GhostWhite;
+  padding: .5em;
+  text-align: center;
+  background-color: ;
+}
+
+p{
+  font-family:"Gill Sans", sans-serif;
+  font-size: 14px;
+  color: GhostWhite;
+}
+
+body{
+  background-image: url("bb.jpg");
+   background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
